@@ -536,6 +536,10 @@ body.light-theme .form-textarea {
   font-size: 0.75rem;
   color: var(--text-secondary);
 }
+
+.footer-icons{
+    margin-bottom: 30px;
+}
 .footer-icons a {
   display: inline-block;
   width: 45px;
