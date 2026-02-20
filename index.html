@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    
+    <title>Studio Lena | Nail Designer</title>
+    <meta name="description" content="Agende seu horário no Studio Lena. Especialista em unhas de gel, fibra e nail art com acabamento de luxo.">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<main class="glass-card">
+
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <i class="fas fa-sun"></i>
+        </button>
+
+        <div class="profile-img-container">
+            <img src="./image/logo.jpeg" alt="Logo Studio Lena" class="profile-img">
+        </div>
+        <h1 itemprop="name">Studio Lena</h1>
+        <h2 itemprop="jobTitle">Nail Designer</h2>
+
+        <div class="action-grid">
+            <a href="#agendamento" class="btn-action">
+                <i class="fab fa-whatsapp"></i> 
+                <span>Agendar</span>
+            </a>
+
+            <a href="https://maps.app.goo.gl/fuEMuDhuw7qLbmbU6" target="_blank" class="btn-action">
+                <i class="fas fa-map-marker-alt"></i> 
+                <span>Localização</span>
+            </a>
+        </div>
+
+        <section class="hours-section">
+
+            <div class="hours-row">
+                <span>Terça - Sábado</span>
+                <span>08:00 - 19:00 <span class="status-open">ABERTO</span>
+            </span>
+        </div>
+
+            <div class="hours-row">
+                <span>Domingo / Seg</span>
+                <span class="status-closed">FECHADO</span>
+            </div>
+        </section>
+
+        <div class="section-header">
+
+            <h3>Trabalhos Realizados</h3>
+        </div>
+        <div class="carousel-track-manual">
+
+            <article class="service-card">
+                <img src="./image/servico1.jpeg">
+                <div class="service-info">
+                    <h4>Alongamento Baby Boomer</h4>
+                </div>
+            </article>
+
+            <article class="service-card">
+                <img src="./image/servico6.jpeg">
+                <div class="service-info">
+                    <h4>Molde f1 mais esmaltação</h4>
+                </div>
+            </article>
+
+            <article class="service-card">
+                <img src="./image/servico-2.jpeg">
+                <div class="service-info">
+                    <h4>Fibra de vidro mais decoração</h4>
+                </div>
+            </article>
+
+            <article class="service-card">
+                <img src="./image/servico4.jpeg">
+                <div class="service-info">
+                    <h4>Soft gel mais decoração</h4>
+                </div>
+            </article>
+
+            <article class="service-card">
+                <img src="./image/servico5.jpeg">
+                <div class="service-info">
+                    <h4>Molde f1 mais esmaltação e pó cromado</h4>
+                </div>
+            </article>
+
+            <article class="service-card">
+                <img src="./image/servico13.jpeg">
+                <div class="service-info">
+                    <h4>Fibra de vidro mais esmaltação e decoração</h4>
+                </div>
+            </article>
+
+            <article class="service-card">
+                <img src="./image/servico11.jpeg">
+                <div class="service-info">
+                    <h4>Banho em gel mais esmaltação e pó cromado</h4>
+                </div>
+            </article>
+
+            
+        </div>
+
+        <div class="section-header">
+            <h3>Tabela de Valores</h3>
+        </div>
+        <div class="price-grid">
+            <div class="price-card" onclick="document.getElementById('serviceSelect').value='Alongamento Fibra'; updateTimeSlots(); document.getElementById('agendamento').scrollIntoView({behavior: 'smooth'});">
+                <div class="price-details">
+                    <h4>Molde F1 + esmaltação e cutilagem</h4>
+                </div>
+                <div class="price-value">R$ 130</div>
+            </div>
+            
+            <div class="price-card" onclick="document.getElementById('serviceSelect').value='Manutenção'; updateTimeSlots(); document.getElementById('agendamento').scrollIntoView({behavior: 'smooth'});">
+                <div class="price-details">
+                    <h4>Fibra de vidro + esmaltação e cutilagem</h4>
+                </div>
+                <div class="price-value">R$ 140</div>
+            </div>
+            
+            <div class="price-card" onclick="document.getElementById('serviceSelect').value='Banho de Gel'; updateTimeSlots(); document.getElementById('agendamento').scrollIntoView({behavior: 'smooth'});">
+                <div class="price-details">
+                    <h4>Manutenção de alongamento</h4>
+                </div>
+                <div class="price-value">R$ 80</div>
+            </div>
+            
+            <div class="price-card" onclick="document.getElementById('serviceSelect').value='Esmaltação em Gel'; updateTimeSlots(); document.getElementById('agendamento').scrollIntoView({behavior: 'smooth'});">
+                <div class="price-details">
+                    <h4>Manutenção de banho de gel</h4>
+                </div>
+                <div class="price-value">R$ 60</div>
+            </div>
+            
+            <div class="price-card" onclick="document.getElementById('serviceSelect').value='Spa dos Pés'; updateTimeSlots(); document.getElementById('agendamento').scrollIntoView({behavior: 'smooth'});">
+                <div class="price-details">
+                    <h4>Banho em gel + esmaltação</h4>
+                </div>
+                <div class="price-value">R$ 80</div>
+            </div>
+
+            <div class="price-card" onclick="document.getElementById('serviceSelect').value='Spa dos Pés'; updateTimeSlots(); document.getElementById('agendamento').scrollIntoView({behavior: 'smooth'});">
+                <div class="price-details">
+                    <h4>Blindagem + esmaltação</h4>
+                </div>
+                <div class="price-value">R$ 60</div>
+            </div>
+
+            <div class="price-card" onclick="document.getElementById('serviceSelect').value='Spa dos Pés'; updateTimeSlots(); document.getElementById('agendamento').scrollIntoView({behavior: 'smooth'});">
+                <div class="price-details">
+                    <h4>Banho de gel com acrílico </h4>
+                </div>
+                <div class="price-value">R$ 80</div>
+            </div>
+
+            <div class="price-card" onclick="document.getElementById('serviceSelect').value='Spa dos Pés'; updateTimeSlots(); document.getElementById('agendamento').scrollIntoView({behavior: 'smooth'});">
+                <div class="price-details">
+                    <h4>Par de decoração</h4>
+                </div>
+                <div class="price-value">R$ 10</div>
+            </div>
+
+            <div class="price-card" onclick="document.getElementById('serviceSelect').value='Spa dos Pés'; updateTimeSlots(); document.getElementById('agendamento').scrollIntoView({behavior: 'smooth'});">
+                <div class="price-details">
+                    <h4>Reposição de unha quebrada</h4>
+                </div>
+                <div class="price-value">R$ 5</div>
+            </div>
+
+            <div class="price-card" onclick="document.getElementById('serviceSelect').value='Spa dos Pés'; updateTimeSlots(); document.getElementById('agendamento').scrollIntoView({behavior: 'smooth'});">
+                <div class="price-details">
+                    <h4>Remoção</h4>
+                </div>
+                <div class="price-value">R$ 30</div>
+            </div>
+
+
+        </div>
+
+        <section class="course-card">
+            <span class="course-badge">Vagas Abertas</span>
+            <h3 class="course-title">Curso Profissional</h3>
+            <p class="course-desc">Aprenda as técnicas mais pedidas do mercado.</p>
+            <button onclick="infoCurso()" class="btn-course">Saiba Mais <i class="fas fa-arrow-right"></i></button>
+        </section>
+
+        <section id="agendamento">
+            <div class="section-header"><h3>Agendamento</h3></div>
+            <form class="schedule-form" onsubmit="event.preventDefault(); agendarWhatsApp();">
+                
+                <div class="form-group">
+                    <label class="form-label" for="clientName">Seu Nome *</label>
+                    <input type="text" id="clientName" class="form-input" placeholder="Digite seu nome" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="serviceSelect">Procedimento *</label>
+                    <select id="serviceSelect" class="form-select" required onchange="updateTimeSlots()">
+                        <option value="" disabled selected>Escolha o serviço...</option>
+                        <option value="Molde F1 e esmaltação e cutilagem" data-duration="150">Molde F1 e esmaltação e cutilagem (2h:30)</option>
+                        <option value="Fibra de vidro e esmaltação e cutilagem" data-duration="150">Fibra de vidro e esmaltação e cutilagem (2h:30)</option>
+                        <option value="Manutenção de alongamento " data-duration="90">Manutenção de alongamento (1h:30)</option>
+                        <option value="Manutenção de banho de gel " data-duration="90">Manutenção de banho de gel (1h:30)</option>
+                        <option value="Banho em gel e esmaltação " data-duration="60">Banho em gel e esmaltação (1h)</option>
+                        <option value="Blindagem e esmaltação" data-duration="40">Blindagem e esmaltação (40min)</option>
+                        <option value="Banho de gel com acrílico " data-duration="60">Banho de gel com acrílico (1h)</option>
+
+                        <option value="Manutenção" data-duration="20">Par de decoração (20min)</option>
+                        <option value="Esmaltação em Gel" data-duration="20">Reposição de unha quebrada (20min)</option>
+                        <option value="Spa dos Pés" data-duration="20">Remoção (20min)</option>
+                    </select>
+                </div>
+
+                <div id="durationDisplay">
+                    <i class="far fa-clock"></i> <span id="durationText"></span>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label class="form-label" for="clientDate">Data Preferida</label>
+                        <input type="date" id="clientDate" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="clientTime">Horário Disponível</label>
+                        <select id="clientTime" class="form-select" required>
+                            <option value="" disabled selected>Selecione um serviço antes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="clientObs">Observações</label>
+                    <textarea id="clientObs" class="form-textarea" placeholder="Algum detalhe extra?"></textarea>
+                </div>
+                
+                <button type="submit" class="btn-schedule"><i class="fab fa-whatsapp"></i> Solicitar Horário</button>
+            </form>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-icons">
+                <a href="https://www.instagram.com/lena.naildesigner_?igsh=MXIxaGpxMThlM2JvOA%3D%3D&utm_source=qr"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/558994318707"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p>© 2026 Studio Lena Nail Designer.</p>
+        </footer>
+    </main>
+    <script src="./js/script.js"></script>
+</body>
+</html>
