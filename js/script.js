@@ -41,7 +41,7 @@
             // Limpa horários
             timeSelect.innerHTML = '<option value="" disabled selected>Escolha o horário...</option>';
 
-            const startHour = 9; // 09:00
+            const startHour = 8; // 09:00
             const endHour = 19;  // 19:00 (fim do expediente)
             
             // O intervalo entre horários é baseado na duração do serviço selecionado
