@@ -4,7 +4,7 @@
   --gold-accent: #d4af37;
 
   --bg-dark: #121212;
-  --bg-card-dark: rgba(30, 30, 30, 0.95);
+  --bg-card-dark: rgba(30, 30, 30, 0.85);
 
   --text-on-dark: #ffffff;
   --text-secondary-dark: #e0e0e0;
@@ -40,13 +40,13 @@
 body.light-theme {
   --bg-body: #fdfbf7;
   --bg-overlay: rgba(253, 251, 247, 0.97);
-  --bg-card: rgba(255, 255, 255, 0.95);
+  --bg-card: rgba(255, 255, 255, 0.85);
   --text-main: #333333;
   --text-secondary: #666666;
   --primary-color: var(--magenta-primary);
   --accent-color: #b8860b;
   --border-glass: rgba(194, 24, 91, 0.2);
-  --input-bg: #ffffff;
+  --input-bg: rgba(255, 255, 255, 0.7);
 }
 
 /* RESET */
@@ -55,22 +55,25 @@ body.light-theme {
   padding: 0;
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent; /* Remove sombra azul em cliques no iOS */
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+
 html {
   scroll-behavior: smooth;
+  font-size: 16px; /* Evita zoom automático no iOS em inputs */
 }
 
 body {
   background-color: var(--bg-body);
   background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
   min-height: 100vh;
+  min-height: 100dvh; /* Altura exata para mobile */
   display: flex;
   justify-content: center;
   align-items: flex-start;
   color: var(--text-main);
-  padding: 30px 15px;
+  padding: 15px; /* Reduzido para ficar melhor no mobile */
   overflow-x: hidden;
   position: relative;
 }
@@ -92,21 +95,27 @@ body::before {
   max-width: 480px;
   position: relative;
   background: var(--bg-card);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   border: 1px solid var(--accent-color);
-  border-radius: 30px;
-  padding: 45px 25px;
+  border-radius: 25px;
+  padding: 35px 20px;
   text-align: center;
   overflow: hidden;
   z-index: 1;
-  margin: 10px 0;
-  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.8);
+}
+
+/* HEADER DO PERFIL */
+.header-profile {
+  position: relative;
+  margin-bottom: 25px;
 }
 
 .theme-toggle {
   position: absolute;
-  top: 25px;
-  right: 25px;
+  top: 0;
+  right: 0;
   background: transparent;
   border: 1px solid var(--accent-color);
   color: var(--accent-color);
@@ -119,37 +128,39 @@ body::before {
   cursor: pointer;
   z-index: 10;
 }
-.theme-toggle:hover {
+.theme-toggle:hover, .theme-toggle:active {
   background: var(--accent-color);
   color: #000;
   transform: rotate(180deg);
 }
 
-/* HEADER */
+/* IMAGEM DO PERFIL RESPONSIVA */
 .profile-img-container {
-  width: 160px;
-  height: 160px;
-  margin: 0 auto 20px auto;
-  padding: 5px;
+  width: clamp(90px, 25vw, 140px); /* Reduzido o tamanho */
+  aspect-ratio: 1 / 1;
+  margin: 0 auto 15px auto;
+  padding: 4px; /* Reduzido padding */
   border-radius: 50%;
   background: var(--gold-gradient);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Sombra mais suave */
 }
 .profile-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  border: 4px solid var(--bg-card);
+  border: 3px solid var(--bg-card); /* Borda um pouco mais fina */
 }
 
 h1 {
   font-family: "Playfair Display", serif;
-  font-size: 2.4rem;
+  font-size: clamp(1.6rem, 5vw, 2.2rem); /* Levemente menor */
   margin-bottom: 5px;
   background: var(--gold-gradient);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
   font-weight: 700;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
@@ -161,71 +172,82 @@ body.light-theme h1 {
 }
 
 h2 {
-  font-size: 0.85rem;
+  font-size: clamp(0.7rem, 2.5vw, 0.8rem); /* Reduzido */
   font-weight: 600;
   color: var(--primary-color);
-  letter-spacing: 4px;
+  letter-spacing: 2px; /* Reduzido */
   text-transform: uppercase;
-  margin-bottom: 25px;
+  margin-bottom: 20px; /* Reduzido */
 }
 
-/* BOTOES TOPO (COM HOVER) */
+/* BOTOES TOPO */
 .action-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin-bottom: 40px;
+  gap: 10px; /* Reduzido */
 }
 .btn-action {
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid var(--accent-color);
-  border-radius: 15px;
-  padding: 16px;
+  background: rgba(255, 255, 255, 0.03); /* Mais sutil */
+  border: 1px solid rgba(212, 175, 55, 0.3); /* Borda mais fina */
+  border-radius: 12px;
+  padding: 12px; /* Reduzido */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 5px; /* Reduzido */
   text-decoration: none;
   position: relative;
   overflow: hidden;
+  user-select: none;
 }
 .btn-action i {
-  font-size: 1.4rem;
+  font-size: 1.2rem; /* Reduzido */
   color: var(--primary-color);
-  transition: 0.3s;
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .btn-action span {
-  font-size: 0.85rem;
+  font-size: 0.75rem; /* Reduzido */
   font-weight: 600;
   color: var(--text-main);
   transition: 0.3s;
 }
 
-.btn-action:hover {
-  background: var(--primary-color);
-  border-color: var(--primary-color);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(194, 24, 91, 0.3);
+/* HOVER & ACTIVE PARA MOBILE APPLE */
+@media (hover: hover) {
+  .btn-action:hover {
+    background: rgba(194, 24, 91, 0.1); /* Fundo colorido sutil no hover */
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(194, 24, 91, 0.2);
+  }
+  .btn-action:hover i,
+  .btn-action:hover span {
+    color: var(--accent-color); /* Dourado no hover para elegância */
+    transform: scale(1.05); /* Escala menor */
+  }
 }
-.btn-action:hover i,
-.btn-action:hover span {
-  color: #fff;
+.btn-action:active {
+  transform: scale(0.96);
+  background: rgba(194, 24, 91, 0.2);
+}
+.btn-action:active i, .btn-action:active span {
+  color: var(--accent-color);
 }
 
 /* HORÁRIOS */
 .hours-section {
-  background: rgba(194, 24, 91, 0.05);
-  border: 1px solid var(--border-glass);
-  border-radius: 18px;
-  padding: 20px;
-  margin-bottom: 40px;
+  background: rgba(255, 255, 255, 0.02); /* Fundo mais discreto */
+  border: 1px solid rgba(255,255,255,0.05); /* Borda quase invisível */
+  border-radius: 12px;
+  padding: 12px 15px; /* Reduzido */
+  margin-bottom: 25px; /* Reduzido */
 }
 .hours-row {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px dashed var(--border-glass);
-  padding: 10px 0;
-  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05); /* Linha sólida sutil */
+  padding: 8px 0; /* Reduzido */
+  font-size: 0.8rem; /* Reduzido */
   color: var(--text-secondary);
 }
 .hours-row:last-child {
@@ -233,345 +255,466 @@ h2 {
 }
 .status-open {
   color: #fff;
-  font-weight: 700;
+  font-weight: 600; /* Menos bold */
+  font-size: 0.65rem; /* Menor */
+  background: linear-gradient(90deg, var(--primary-color), var(--magenta-dark)); /* Gradiente no badge */
+  padding: 3px 6px; /* Menor */
+  border-radius: 8px; /* Menor */
+  margin-left: 5px;
+}
+.status-closed {
+  color: rgba(255,255,255,0.4); /* Mais apagado */
+  font-weight: 600;
   font-size: 0.7rem;
-  background: var(--primary-color);
-  padding: 4px 10px;
-  border-radius: 12px;
 }
 
 /* SEÇÕES */
 .section-header {
-  text-align: left;
+  text-align: center; /* Centralizado para mais elegância */
   margin-bottom: 20px;
-  padding-left: 15px;
-  border-left: 4px solid var(--primary-color);
-  margin-top: 40px;
+  padding-left: 0; /* Removido padding esquerdo */
+  border-left: none; /* Removido borda esquerda */
+  margin-top: 35px;
+  position: relative;
 }
 .section-header h3 {
-  font-size: 1.2rem;
-  font-family: "Playfair Display", serif;
-  font-weight: 700;
-  color: var(--text-main);
+  font-size: 1.1rem; /* Reduzido */
+  font-family: "Montserrat", sans-serif; /* Trocado para fonte mais limpa */
+  font-weight: 500; /* Menos bold */
+  color: var(--accent-color); /* Dourado */
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px; /* Mais espaçado */
+  display: inline-block;
+}
+/* Linhas laterais no título */
+.section-header h3::before,
+.section-header h3::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 1px;
+    background: var(--accent-color);
+    opacity: 0.5;
+}
+.section-header h3::before {
+    left: 10%;
+    margin-left: -15px;
+}
+.section-header h3::after {
+    right: 10%;
+    margin-right: -15px;
 }
 
-/* CARROSSEL DE IMAGENS */
+
+/* CARROSSEL DE IMAGENS - RESPONSIVO PIXELS & VW */
 .carousel-track-manual {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   overflow-x: auto;
   padding-bottom: 15px;
-  scrollbar-width: none;
+  scrollbar-width: thin;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -10px; /* Estica nas laterais */
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.carousel-track-manual::-webkit-scrollbar {
+  height: 4px; /* Barra mais fina */
+}
+.carousel-track-manual::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.5); /* Barra dourada translúcida */
+  border-radius: 2px;
 }
 .service-card {
-  min-width: 160px;
-  height: 230px;
-  border-radius: 20px;
+  min-width: clamp(100px, 30vw, 130px); /* Largura compacta */
+  aspect-ratio: 1 / 1;  /* Agora elas serão redondinhas/quadradas, cortando muita altura */
+  max-height: 130px; /* Trava rígida de altura para não esticarem em telas altas */
+  border-radius: 12px;
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--border-glass);
+  border: 1px solid rgba(255,255,255,0.05);
   flex-shrink: 0;
   background: #000;
   cursor: pointer;
+  scroll-snap-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 .service-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.85;
-  transition: 0.5s;
+  opacity: 0.9; /* Um pouco mais visível */
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s;
 }
-.service-card:hover img {
-  transform: scale(1.1);
-  opacity: 1;
+@media (hover: hover) {
+  .service-card:hover img {
+    transform: scale(1.05); /* Escala menor */
+    opacity: 1;
+  }
 }
 .service-info {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 25%, transparent);
-  padding: 15px 12px;
-  text-align: left;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%); /* Gradiente mais escuro em baixo */
+  padding: 8px 6px; /* Reduzido padding */
+  text-align: center; /* Centralizado */
 }
 .service-info h4 {
   color: white;
-  font-size: 0.9rem;
-  margin-bottom: 4px;
-  font-weight: 600;
-}
-.service-info span {
-  color: #fff;
-  font-size: 0.7rem;
-  font-weight: 700;
-  background: var(--primary-color);
-  padding: 4px 8px;
-  border-radius: 8px;
+  font-size: 0.7rem; /* Fonte ainda menor */
+  line-height: 1.2;
+  font-weight: 500; /* Menos bold */
+  text-shadow: 0 1px 2px rgba(0,0,0,0.9);
 }
 
-/* --- NOVA SEÇÃO: TABELA DE PREÇOS (CARDS) --- */
+/* TABELA DE PREÇOS */
 .price-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
-  margin-bottom: 40px;
+  gap: 10px; /* Reduzido gap */
+  margin-bottom: 25px; /* Reduzido margin */
 }
 .price-card {
-  background: var(--input-bg);
-  border: 1px solid var(--border-glass);
-  border-radius: 18px;
-  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.02); /* Fundo mais escuro/transparente */
+  border: 1px solid rgba(255,255,255,0.05); /* Borda muito sutil */
+  border-radius: 12px; /* Mais quadrado */
+  padding: 12px 15px; /* Reduzido padding */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: 0.3s;
+  transition: all 0.3s ease;
   text-align: left;
   cursor: pointer;
+  width: 100%;
+  color: inherit;
+  font-family: inherit;
 }
-.price-card:hover {
-  border-color: var(--primary-color);
-  transform: translateX(5px);
-  background: rgba(194, 24, 91, 0.05);
-  box-shadow: 0 5px 15px rgba(194, 24, 91, 0.2);
+@media (hover: hover) {
+  .price-card:hover {
+    border-color: rgba(212, 175, 55, 0.5); /* Borda dourada no hover */
+    transform: none; /* Removido o transform X */
+    background: rgba(255, 255, 255, 0.05); /* Um pouco mais claro no hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+}
+.price-card:active {
+  transform: scale(0.98);
+  border-color: var(--accent-color);
 }
 .price-details h4 {
-  font-size: 0.95rem;
-  color: var(--text-main);
-  font-weight: 700;
-  margin-bottom: 4px;
+  font-size: 0.85rem; /* Menor */
+  color: var(--text-secondary); /* Cor secundária padrão */
+  font-weight: 500; /* Mais fina */
+  margin-bottom: 0; /* Removido margem, centralizando verticalmente melhor */
+  line-height: 1.3;
+  transition: color 0.3s ease;
 }
-.price-details p {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-}
-.price-value {
-  font-size: 1.15rem;
-  font-family: "Playfair Display", serif;
-  color: var(--accent-color);
-  font-weight: 800;
-  white-space: nowrap;
-  background: var(--input-bg);
-  padding: 8px 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border-glass);
-}
-body.light-theme .price-card:hover {
-  background: #fff;
+.price-card:hover .price-details h4 {
+    color: var(--text-main); /* Fica branco no hover */
 }
 
-/* FORMULÁRIO ESPAÇADO */
+.price-value {
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif; /* Trocado para Montserrat, mais limpo para números */
+  color: var(--accent-color);
+  font-weight: 600;
+  white-space: nowrap;
+  background: transparent; /* Removido background */
+  padding: 0; /* Removido padding */
+  border-radius: 0; /* Removido border radius */
+  border: none; /* Removido border */
+  margin-left: 10px;
+}
+body.light-theme .price-card:hover {
+  background: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.1);
+}
+body.light-theme .price-value {
+  background: transparent;
+}
+body.light-theme .price-details h4 {
+    color: var(--text-secondary);
+}
+body.light-theme .price-card:hover .price-details h4 {
+    color: var(--text-main);
+}
+
+/* FORMULÁRIO ESPAÇADO E ELEGANTE */
 .schedule-form {
-  background: var(--input-bg);
-  border: 1px solid var(--border-glass);
-  border-radius: 25px;
-  padding: 30px 25px;
+  background: transparent; /* Sem fundo bloco pesado */
+  border: none; /* Sem borda envolta do form */
+  padding: 10px 0; /* Menos padding */
   margin-bottom: 25px;
   text-align: left;
 }
 .form-grid-2 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  grid-template-columns: 1fr; /* Forçando 1 coluna para ficar um abaixo do outro sempre */
+  gap: 15px; /* Reduzido */
 }
 
 .form-group {
-  margin-bottom: 22px;
+  margin-bottom: 18px; /* Reduzido */
+  position: relative; /* Para animações de label se desejar no futuro, mas mantendo simples agora */
 }
 .form-label {
   display: block;
-  font-size: 0.8rem;
-  color: var(--accent-color);
-  margin-bottom: 10px;
-  font-weight: 700;
-  margin-left: 5px;
+  font-size: 0.75rem; /* Um pouco maior pela legibilidade */
+  color: rgba(255,255,255,0.7); /* Cor um pouco mais clara */
+  margin-bottom: 8px; /* Mais margem do input */
+  font-weight: 600; /* Um tiquinho mais grosso */
+  margin-left: 2px; /* Ajuste visual */
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .form-input,
 .form-select,
 .form-textarea {
   width: 100%;
-  padding: 15px;
-  border-radius: 15px;
-  border: 1px solid var(--border-glass);
-  background: rgba(255, 255, 255, 0.05);
+  padding: 14px 16px; /* Um pouco mais gordinho de novo para conforto do toque */
+  border-radius: 8px; /* Borda elegante */
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Borda padrão levemente mais visível */
+  background: rgba(255, 255, 255, 0.03); /* Fundo um pouco mais claro */
   color: var(--text-main);
-  font-size: 0.95rem;
+  font-size: 1rem; /* Importante 16px (1rem) para iOS não dar zoom na tela */
   outline: none;
-  font-family: "Montserrat", sans-serif;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  appearance: none; /* remove default arrow from OS */
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.15); /* Leve sombra interna */
+}
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: rgba(255,255,255,0.3); /* Placeholder mais opaco */
+    font-weight: 300;
+}
+
+select.form-select {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22rgba(255,255,255,0.6)%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M6%209l6%206%206-6%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 18px 18px; /* Icone de seta melhorado */
+  padding-right: 40px;
+  color: rgba(255,255,255,0.9);
   cursor: pointer;
 }
+.form-select option {
+    background-color: var(--bg-card-dark); /* Fundo melhor no select */
+    color: var(--text-main);
+    padding: 10px;
+}
+
 .form-textarea {
   resize: vertical;
-  min-height: 90px;
+  min-height: 80px;
 }
 
 .form-input:focus,
-.form-select:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(194, 24, 91, 0.2);
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--accent-color); /* Foca com dourado elegante */
+  background: rgba(0, 0, 0, 0.4); /* Fica mais escuro ao focar */
+  box-shadow: 0 0 0 1px var(--accent-color); /* Realça borda sem ser borrado */
 }
 
 body.light-theme .form-input,
 body.light-theme .form-select,
 body.light-theme .form-textarea {
-  background: #fff;
-  border-color: #ccc;
+  background: rgba(255,255,255,0.8);
+  border-color: rgba(0,0,0,0.1);
   color: #333;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+body.light-theme .form-input:focus,
+body.light-theme .form-select:focus,
+body.light-theme .form-textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-color);
+    background: #fff;
+}
+body.light-theme select.form-select {
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22rgba(0,0,0,0.5)%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
 }
 
 /* AVISO DE DURAÇÃO */
 #durationDisplay {
-  margin-top: -15px;
-  margin-bottom: 20px;
-  margin-left: 5px;
-  font-size: 0.85rem;
+  margin-top: -8px;
+  margin-bottom: 15px;
+  margin-left: 2px;
+  font-size: 0.75rem; /* Menor */
   color: var(--text-secondary);
   font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   opacity: 0;
-  transition: opacity 0.3s;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s, height 0.3s;
 }
 #durationDisplay.visible {
   opacity: 1;
+  height: auto;
 }
 #durationDisplay i {
   color: var(--accent-color);
 }
 
-/* BOTÃO AGENDAR (HOVER) */
+/* BOTÃO AGENDAR */
 .btn-schedule {
   width: 100%;
   background: var(--magenta-gradient);
   color: #fff;
   font-weight: 700;
-  padding: 20px;
+  padding: 16px; /* Mais fino */
   border: none;
-  border-radius: 50px;
+  border-radius: 12px; /* Borda acompanhando os inputs, mais elegante */
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 0.95rem; /* Menor */
+  letter-spacing: 1px;
   cursor: pointer;
   margin-top: 10px;
-  box-shadow: 0 5px 20px rgba(194, 24, 91, 0.4);
+  box-shadow: 0 5px 15px rgba(194, 24, 91, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
-.btn-schedule:hover {
-  transform: scale(1.02);
-  box-shadow: 0 10px 30px rgba(194, 24, 91, 0.6);
-  filter: brightness(1.1);
+@media (hover: hover) {
+  .btn-schedule:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(194, 24, 91, 0.5);
+    filter: brightness(1.1);
+  }
+}
+.btn-schedule:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 8px rgba(194, 24, 91, 0.4);
 }
 
-/* BOTÃO CURSO (HOVER) */
+/* BOTÃO CURSO */
 .course-card {
-  background: linear-gradient(
-    145deg,
-    rgba(194, 24, 91, 0.08),
-    rgba(0, 0, 0, 0)
-  );
-  border: 1px solid var(--border-glass);
-  border-radius: 25px;
-  padding: 30px 20px;
-  margin-bottom: 20px;
+  background: linear-gradient(145deg, rgba(194, 24, 91, 0.08), rgba(0, 0, 0, 0));
+  border: 1px solid rgba(255,255,255,0.05); /* Mais sutil */
+  border-radius: 16px; /* Ajuste visual */
+  padding: 20px 15px; /* Reduzido */
+  margin-bottom: 25px;
   text-align: center;
 }
 .course-badge {
   background: var(--gold-gradient);
   color: #000;
-  font-size: 0.65rem;
+  font-size: 0.6rem; /* Menor */
   font-weight: 800;
-  padding: 5px 15px;
-  border-radius: 20px;
+  padding: 4px 10px; /* Reduzido */
+  border-radius: 8px; /* Mais quadrado elegante */
   text-transform: uppercase;
   display: inline-block;
-  margin-bottom: 12px;
+  margin-bottom: 8px; /* Reduzido */
 }
 .course-title {
-  font-size: 1.3rem;
+  font-size: 1.15rem; /* Menor */
   font-weight: 800;
   color: var(--text-main);
-  margin-bottom: 10px;
+  margin-bottom: 6px; /* Reduzido */
   font-family: "Playfair Display", serif;
 }
 .course-desc {
-  font-size: 0.85rem;
+  font-size: 0.8rem; /* Menor */
   color: var(--text-secondary);
-  margin-bottom: 20px;
+  margin-bottom: 12px;
+  line-height: 1.4;
 }
-
 .btn-course {
   background: transparent;
   color: var(--text-main);
-  font-weight: 800;
-  padding: 12px 28px;
+  font-weight: 700; /* Menos pesado */
+  padding: 10px 20px; /* Reduzido */
   border-radius: 50px;
   border: 1px solid var(--accent-color);
   text-transform: uppercase;
-  font-size: 0.8rem;
+  font-size: 0.75rem; /* Menor */
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   transition: 0.3s;
 }
-.btn-course:hover {
+@media (hover: hover) {
+  .btn-course:hover {
+    background: var(--accent-color);
+    color: #000;
+    box-shadow: 0 0 12px var(--accent-color);
+  }
+}
+.btn-course:active {
   background: var(--accent-color);
   color: #000;
-  box-shadow: 0 0 15px var(--accent-color);
+  transform: scale(0.95);
 }
 
 /* FOOTER */
 .footer {
-  border-top: 1px solid var(--border-glass);
-  padding-top: 30px;
-  margin-top: 30px;
-  font-size: 0.75rem;
+  border-top: 1px solid rgba(255,255,255,0.05); /* Borda mais leve */
+  padding-top: 20px; /* Reduzido */
+  margin-top: 20px; /* Reduzido */
+  font-size: 0.7rem; /* Reduzido */
   color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-.footer-icons{
-    margin-bottom: 30px;
+.footer-icons {
+  margin-bottom: 15px; /* Reduzido */
+  display: flex;
+  gap: 15px;
 }
 .footer-icons a {
-  display: inline-block;
-  width: 45px;
-  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 38px; /* Reduzido */
+  height: 38px; /* Reduzido */
   border-radius: 50%;
-  background: var(--input-bg);
+  background: rgba(255,255,255,0.03); /* Mais escuro */
   color: var(--text-main);
-  line-height: 45px;
-  margin: 0 8px;
-  border: 1px solid var(--border-glass);
-  transition: 0.3s;
+  text-decoration: none;
+  font-size: 1.1rem; /* Reduzido */
+  border: 1px solid rgba(255,255,255,0.08); /* Borda mais fina */
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.footer-icons a:hover {
-  background: var(--primary-color);
-  color: #fff;
-  transform: rotate(15deg) scale(1.1);
-  border-color: transparent;
+@media (hover: hover) {
+  .footer-icons a:hover {
+    background: var(--primary-color);
+    color: #fff;
+    transform: translateY(-3px) scale(1.1);
+    border-color: transparent;
+  }
+}
+.footer-icons a:active {
+  transform: scale(0.9);
 }
 
-@media (max-width: 480px) {
-  h1 {
-    font-size: 2rem;
-  }
+/* AJUSTES FINAIS PARA APARELHOS PEQUENOS (Ex: iPhone SE) */
+@media (max-width: 380px) {
   .glass-card {
-    padding: 35px 20px;
+    padding: 20px 10px; /* Ainda menor */
   }
   .form-grid-2 {
     grid-template-columns: 1fr;
-    gap: 20px;
   }
-  .form-input,
-  .form-select {
-    font-size: 16px;
+  .price-value {
+    font-size: 0.9rem; /* Fica menor em telas bem finas */
+  }
+  .carousel-track-manual {
+      margin: 0 -5px; /* Compensa padding se a tela for mto pequena */
+      padding-left: 5px;
+      padding-right: 5px;
   }
 }
